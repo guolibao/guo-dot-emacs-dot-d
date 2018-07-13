@@ -1,0 +1,276 @@
+#+STARTUP: overview
+#+TITLE: guo's Emacs in linux server
+#+CREATOR: Dawid 'daedreth' Eckert
+#+LANGUAGE: en
+#+OPTIONS: num:nil
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+
+* My Own Setting Section
+** Org Mode Setting
+*** For plantuml to work in org mode
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages 'org-babel-load-languages '((ruby . t)
+							     (plantuml . t)
+							     (C . t)
+							     (gnuplot . t)
+							     (R . t)
+							     (sh . t)
+							     )))
+  (setq org-plantuml-jar-path
+	(expand-file-name "~/plantuml.jar"))
+
+#+END_SRC
+
+** yasnippet
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :config
+    (use-package yasnippet-snippets
+      :ensure t)
+    (yas-reload-all))
+#+END_SRC
+
+** flycheck
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t)
+#+END_SRC
+
+** company mode
+I setthe delay for company modeto kick in to half a second, I also make sure that
+it starts doing its magic after typing in only 2 characters
+
+I prefer =C-n= and =C-p= to move around the items, so I remap those accordingly.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :config
+    (setq company-idle-delay 0)
+    (setq company-minimum-prefix-length 3))
+
+  (with-eval-after-load 'company
+                          (define-key company-active-map (kbd "M-n") nil)
+                          (define-key company-active-map (kbd "M-p") nil)
+                          (define-key company-active-map (kbd "C-n") #'company-select-next)
+                          (define-key company-active-map (kbd "C-p") #'company-select-previous)
+                          (define-key company-active-map (kbd "SPC") #'company-abort))
+#+END_SRC
+
+** specific languages
+Be it for code or prose, completion is a must.
+After messing around with =auto-completion= for a while I decide to drop it
+in favor of =company=, and it turns out to have been a great decision
+
+*** c/c++
+**** yasnippet
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c++-mode 'yas-minor-mode)
+  (add-hook 'c-mode-hook 'yas-minor-mode)
+#+END_SRC
+
+**** flycheck-clang-analyzer
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck-clang-analyzer
+    :ensure t
+    :config
+    (with-eval-after-load 'flycheck
+      (require 'flycheck-clang-analyzer)
+      (flycheck-clang-analyzer-setup)))
+#+END_SRC
+
+**** company
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'company
+    (add-hook 'c++-mode-hook 'company-mode)
+    (add-hook 'c-mode-hook 'company-mode))
+
+  (use-package company-c-headers
+    :ensure t
+    :config
+    ;; (setq company-backends '((company-c-headers
+    ;;                           company-dabbrev-code
+    ;;                           company-irony)))
+    )
+
+  (use-package irony
+    :ensure t
+    :config
+    (add-hook 'c++-mode-hook 'irony-mode)
+    (add-hook 'c-mode-hook 'irony-mode)
+    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+#+END_SRC
+
+*** python
+**** yasnippet
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'python-mode-hook 'yas-minor-mode)
+#+END_SRC
+
+**** flycheck
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'python-mode-hook 'flycheck-mode)
+#+END_SRC
+
+**** company
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'company
+    (add-hook 'python-mode-hook 'company-mode))
+
+  (use-package company-jedi
+    :ensure t
+    :config
+    (require 'company)
+    (add-hook 'python-mode-hook 'python-mode-company-init))
+#+END_SRC
+
+*** emacs-lisp
+**** eldoc
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+#+END_SRC
+
+**** yasnippet
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
+#+END_SRC
+
+**** company
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
+
+  (use-package slime
+    :ensure t
+    :config
+    (setq inferior-lisp-program "/usr/bin/sbc1")
+    (setq slime-contribes '(slime-fancy)))
+#+END_SRC
+
+*** bash
+**** yasnippet
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'shell-mode-hook 'yas-minor-mode)
+#+END_SRC
+
+** git integration
+*** magit
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :config
+    (setq magit-push-always-verify nil)
+    (setq magit-commit-summary-max-length 50)
+    :bind
+    ("M-g" . magit-status))
+#+END_SRC
+** Easy to add emacs-lisp template in org mode
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-structure-template-alist
+               '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+#+END_SRC
+
+**** flycheck
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'shell-mode-hook 'flycheck-mode)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'shell-mode-hook 'company-mode)
+
+  (defun shell-mode-company-init ()
+    (setq-local company-backends '((company-shell
+                                    company-shell-env
+                                    company-etags
+                                    company-dabbrev-code))))
+
+  (use-package company-shell
+    :ensure t
+    :config
+    (require 'company)
+    (add-hook 'shell-mode-hook 'shell-mode-company-init))
+#+END_SRC
+
+* So far not used
+# ** Align Regular Expression Setting
+# *** when align-regexp, using spaces instead of tabs
+# #+BEGIN_SRC emacs-lisp
+# (defadvice align-regexp (around align-regexp-with-spaces activate)
+#   (let ((indent-tabs-mode nil))
+#     ad-do-it))
+# #+END_SRC
+
+# ** Disable Auto Save, Auto Backup and Create Lockfile
+# #+BEGIN_SRC emacs-lisp
+# ;; disable auto-save and auto-backup
+# (setq auto-save-default nil)
+# (setq make-backup-files nil)
+# ;; don't use lockfiles to avoid editng collisions
+# (setq create-lockfiles nil)
+
+# ;; store all backup and autosave files in the tmp dir
+# ;; (setq backup-directory-alist
+# ;;       `((".*" . ,temporary-file-directory)))
+# ;; (setq auto-save-file-name-transforms
+# ;;       `((".*" ,temporary-file-directory t)))
+# #+END_SRC
+
+# ** High Light Symbol Key Binding
+# #+BEGIN_SRC emacs-lisp
+# ;; highlight-symbol key binding
+# (global-set-key [(shift f8)] 'highlight-symbol)
+# (global-set-key [f8] 'highlight-symbol-next)
+# (global-set-key [(control f8)] 'highlight-symbol-prev)
+# (global-set-key [(meta f8)] 'highlight-symbol-query-replace)
+# #+END_SRC
+
+# ** Google Translate Direction
+# #+BEGIN_SRC emacs-lisp
+# (setq google-translate-translation-directions-alist
+#       '(("ja" . "en") ("en" . "de") ("de" . "fr") ("fr" . "de")))
+# #+END_SRC
+
+# ** #If 0 ... #endif Color Dim
+# #+BEGIN_SRC emacs-lisp
+# ;; #if 0 ... #endif to change the code color as comment color
+# (add-to-list 'load-path' "~/.emacs.d/MyLisp/")
+# (require 'never-comment)
+# (never-comment-init)
+# #+END_SRC
+
+
+# ** Auto Complete
+# #+BEGIN_SRC emacs-lisp
+#   ;; start auto complete with emacs
+#   (require 'auto-complete)
+#   ;; do default config for auto-complete
+#   (require 'auto-complete-config)
+#   (ac-config-default)
+# #+END_SRC
+# #+BEGIN_SRC emacs-lisp
+#   (add-to-list 'ac-modes 'latex-mode)	;Make auto-complete aware of `latex-mode`
+# #+END_SRC
+
+# ** Yasnippet
+# #+BEGIN_SRC emacs-lisp
+#   (require 'yasnippet)
+#   ;; (yas-global-mode 1)
+# #+END_SRC
+
+
+# ** Add the package-archives, not used at this moment
+# #+BEGIN_SRC emacs-lisp
+#   ;; (add-to-list 'package-archives '("ELPA"  . "http://tromey.com/elpa/"))
+# #+END_SRC
+
+
+
+
+
+
+
+
+
+
