@@ -417,7 +417,13 @@ When ever enable a color code, will colorize the background to that color, for e
 
 
 * org Mode
+** Common settings
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-window-setup 'current-window)
+#+END_SRC
+
 ** htmlize
+Systax highlighting for documents exported to HTML
 #+BEGIN_SRC emacs-lisp
   (use-package htmlize
     :ensure t)
