@@ -15,7 +15,7 @@
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (shell . t)
+							     (sh . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
@@ -435,3 +435,36 @@ Using -brwse-url-of-file should work when given a directory
 
 
 
+* screen shot
+** Screenshotting the entire screen
+#+BEGIN_SRC emacs-lisp
+  (defun guo/take-screenshot ()
+    "Takes a fullscreen screen shot of the current workspace"
+    (interactive)
+    (when window-system
+      (cl-loop for i downfrom 3 to 1 do
+	    (progn
+	      (message (concat (number-to-string i) "..."))
+	      (sit-for 1)))
+      (message "Cheese!")
+      (start-process "screenshot" nil "import" "-window" "root"
+		     (concat (getenv "HOME") "/Desktop/" (cl-subseq (number-to-string (float-time)) 0 10) ".png"))
+      (message "Screenshot taken")))
+  (global-set-key (kbd "<print>") 'guo/take-screenshot)
+
+#+END_SRC
+
+** Screenshotting region
+#+BEGIN_SRC emacs-lisp
+  (defun guo/take-screenshot-region ()
+    "Takes a screenshot of a region selected by the user."
+    (interactive)
+    (when window-system
+    (call-process "import" nil nil nil ".newScreen.png")
+    (call-process "convert" nil nil nil ".newScreen.png" "-shave" "1x1"
+		  (concat (getenv "HOME") "/Desktop/" (cl-subseq (number-to-string (float-time)) 0 10) ".png"))
+    (call-process "rm" nil nil nil ".newScreen.png")))
+  (global-set-key (kbd "<Scroll_Lock>") 'guo/take-screenshot-region)
+#+END_SRC
+
+    
