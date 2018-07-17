@@ -131,6 +131,68 @@
   (require 'company)
   (add-hook 'shell-mode-hook 'shell-mode-company-init))
 
+(use-package ace-window
+  :ensure t
+  :config
+  ;; aw-keys - the initial characters used in window labels, default is 1-9
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  ;; if you want these keys to work with fewer than three windows, you need to have aw-dispatch-always to t
+  (setq aw-dispatch-always t)
+  :bind
+  ([remap other-window] . ace-window))
+
+(defun split-and-follow-horizontally ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1))
+(global-set-key (kbd "C-x 2") 'split-and-follow-hoizontally)
+
+(defun config-visit ()
+  "Visitthe config.org file"
+  (interactive)
+  (find-file "~/.emacs.d/config.org"))
+(global-set-key (kbd "C-c e") 'config-visit)
+
+(defun config-reload ()
+    "Reload ~/.emacs.d/config.org at runtime"
+  (interactive)
+  (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+(global-set-key (kbd "C-c r") 'config-reload)
+
+(setq ido-enable-flex-matching nil)
+(setq ido-create-new-buffer 'always)
+(setq ido-everywhere 1)
+(ido-mode 1)
+
+(use-package ido-vertical-mode
+  :ensure t
+  :init
+  (ido-vertical-mode 1))
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
+
+(use-package smex
+  :ensure t
+  :init
+  (smex-initialize)
+  :bind
+  ("M-x" . smex))
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(setq ibuffer-expert t)
+
+(global-set-key (kbd "C-x b") 'ido-switch-buffer)
+
+(use-package avy
+  :ensure t
+  :bind
+  ("M-s" . avy-goto-char))
+
+(use-package rainbow-mode
+  :ensure t
+  :init (rainbow-mode 1))
+
 (defadvice align-regexp (around align-regexp-with-spaces activate)
   (let ((indent-tabs-mode nil))
     ad-do-it))

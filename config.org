@@ -211,7 +211,122 @@ in favor of =company=, and it turns out to have been a great decision
     (require 'company)
     (add-hook 'shell-mode-hook 'shell-mode-company-init))
 #+END_SRC
+     
+** ace-window
+#+BEGIN_SRC emacs-lisp
+  (use-package ace-window
+    :ensure t
+    :config
+    ;; aw-keys - the initial characters used in window labels, default is 1-9
+    (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+    ;; if you want these keys to work with fewer than three windows, you need to have aw-dispatch-always to t
+    (setq aw-dispatch-always t)
+    :bind
+    ([remap other-window] . ace-window))
+#+END_SRC
 
+*** following window splits
+After you split window, your focus remains in the previous one. 
+This annoyed me so much, I wrote these two, they take care of it
+#+BEGIN_SRC emacs-lisp
+  (defun split-and-follow-horizontally ()
+    (interactive)
+    (split-window-below)
+    (balance-windows)
+    (other-window 1))
+  (global-set-key (kbd "C-x 2") 'split-and-follow-hoizontally)
+
+  (defunsplit-and-follow-vertically ()
+    (interactive)
+    (split-window-right)
+    (balance-windows)
+    (other-window 1))
+  (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+#+END_SRC
+
+** Visiting the configuration
+Quickly edit =~/.emacs.d/config.org=
+#+BEGIN_SRC emacs-lisp
+  (defun config-visit ()
+    "Visitthe config.org file"
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (global-set-key (kbd "C-c e") 'config-visit)
+#+END_SRC
+
+** Reloading the configuration
+Simply pressing =C-c r= will reload the file, very handy.
+You can also manually invoke =M-x config-reload=
+#+BEGIN_SRC emacs-lisp
+  (defun config-reload ()
+      "Reload ~/.emacs.d/config.org at runtime"
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+END_SRC
+
+*** IDO
+*** enable ido mode
+#+BEGIN_SRC emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-everywhere 1)
+  (ido-mode 1)
+#+END_SRC
+
+*** ido-vertical-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+END_SRC
+
+*** Smex
+for "M-x" quickly command completion and selection
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+    :ensure t
+    :init
+    (smex-initialize)
+    :bind
+    ("M-x" . smex))
+#+END_SRC
+
+** buffers
+*** enable ibuffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+
+*** expert
+deleting buffers from ibuffer will not ask to confirm
+#+BEGIN_SRC emacs-lisp
+  (setq ibuffer-expert t)
+#+END_SRC
+
+*** switch buffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x b") 'ido-switch-buffer)
+#+END_SRC
+
+** avy
+for quick go to a place by searching a character and selet the overlay letters
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind
+    ("M-s" . avy-goto-char))
+#+END_SRC
+
+** rainbow
+When ever enable a color code, will colorize the background to that color, for example #00FF00
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :ensure t
+    :init (rainbow-mode 1))
+#+END_SRC
 * So far not used
 ** Align Regular Expression Setting
 *** when align-regexp, using spaces instead of tabs
