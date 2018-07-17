@@ -15,7 +15,7 @@
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (sh . t)
+							     (shell . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
@@ -98,8 +98,8 @@ in favor of =company=, and it turns out to have been a great decision
 
   (defun c-mode-company-init ()
     (setq company-backends '((company-c-headers
-                              company-dabbrev-code
-                              company-irony))))
+			      company-dabbrev-code
+			      company-irony))))
 
   (use-package company-irony
     :ensure t)
@@ -107,14 +107,16 @@ in favor of =company=, and it turns out to have been a great decision
   (with-eval-after-load 'company
     (add-hook 'c++-mode-hook 'c-mode-company-init)
     (add-hook 'c-mode-hook 'c-mode-company-init))
+  ;; only install irony if it is linux system
+  ;; for windows 'windows-nt' for Mac OS 'darwin'
+  (if (eq system-type 'gnu/linux)
+      (use-package irony
+	:ensure t
+	:config
+	(add-hook 'c++-mode-hook 'irony-mode)
+	(add-hook 'c-mode-hook 'irony-mode)
+	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
-
-  (use-package irony
-    :ensure t
-    :config
-    (add-hook 'c++-mode-hook 'irony-mode)
-    (add-hook 'c-mode-hook 'irony-mode)
-    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 #+END_SRC
 
 **** ggtags
