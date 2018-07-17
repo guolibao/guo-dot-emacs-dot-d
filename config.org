@@ -236,7 +236,7 @@ This annoyed me so much, I wrote these two, they take care of it
     (other-window 1))
   (global-set-key (kbd "C-x 2") 'split-and-follow-hoizontally)
 
-  (defunsplit-and-follow-vertically ()
+  (defun split-and-follow-vertically ()
     (interactive)
     (split-window-right)
     (balance-windows)
