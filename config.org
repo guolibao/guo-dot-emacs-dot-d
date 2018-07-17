@@ -15,7 +15,7 @@
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (sh . t)
+							     (shell . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
@@ -405,12 +405,33 @@ When ever enable a color code, will colorize the background to that color, for e
 #   ;; (add-to-list 'package-archives '("ELPA"  . "http://tromey.com/elpa/"))
 # #+END_SRC
 
+** qml mode for QT qml file
+#+BEGIN_SRC emacs-lisp
+  (autoload 'qml-mode "qml-mode" "Editing Qt Declarative." t)
+  (add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
+#+END_SRC
 
 
 
 
+* org Mode
+** htmlize
+#+BEGIN_SRC emacs-lisp
+  (use-package htmlize
+    :ensure t)
+#+END_SRC
 
 
+* Open the folder containing the current file by the default explorer of the OS
+Using -brwse-url-of-file should work when given a directory
+#+BEGIN_SRC emacs-lisp
+  (defun guo/browse-file-directory ()
+    "Open the crrent file's directory however the OS would"
+    (interactive)
+    (if default-directory
+	(browse-url-of-file (expand-file-name default-directory))
+      (error "No `default-directory` to open")))
+#+END_SRC
 
 
 
