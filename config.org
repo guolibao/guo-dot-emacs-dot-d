@@ -71,6 +71,20 @@ in favor of =company=, and it turns out to have been a great decision
 #+END_SRC
 
 **** company
+Require clang and libclang-dev to be installed,
+#+BEGIN_SRC shell
+sudo apt-get install clang
+sudo apt-get install libclang-dev
+mkdir build in ~/.emacs.d/elpa/irony/server
+cd build
+cmake -DLIBCLANG_LIBRARY=/usr/lib/llvm-3.8/lib/libclang.so.1
+-DLIBCLANG_INCLUDE_DIR=/usr/lib/llvm-3.8/include 
+~/.emacs.d/ 
+/home/guo/.emacs.d/elpa/irony/server
+#+END_SRC
+for building irony server in the shell terminal, 
+and then =M-x irony-install-server= in emacs
+
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'company
     (add-hook 'c++-mode-hook 'company-mode)
@@ -462,7 +476,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (shell . t)
+							     (sh . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
