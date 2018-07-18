@@ -31,6 +31,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/.emacs.d/config.org")))
  '(package-selected-packages
    (quote
     (rainbow-delimiters hungry-delete htmlize rainbow-mode smex ido-vertical-mode ace-window use-package))))

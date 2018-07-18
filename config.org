@@ -116,6 +116,24 @@ and then =M-x irony-install-server= in emacs
 
 #+END_SRC
 
+company-c-headers provides auto-completion for c/c++ headers using company,
+If you want to complete C++ header files, you have to add its paths,
+since by default =company-c-headers= only includes these two system
+include paths: =/usr/include/= and =/usr/local/include/=.
+
+To enable C++ header completion for standard libraries, you have to add
+its path, for example, like this:
+=(add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8/")=
+After that, you can complete C++ header files.
+
+To complete project local, use =company-c-headers-path-user= and
+put it in =.dir-locals.el=
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'company-c-headers-path-system "C:/Qt/Qt5.8.0\\5.8\\Src/qtsensors/include/QtSensors")
+  ;; add the below to .dir-locals.el file
+  ;; ((nil . ((company-c-headers-path-user . ("D:/Work/Learning/Emacs/my_program/my_inc/")))))
+#+END_SRC
 **** ggtags
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'ggtags
@@ -476,7 +494,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (sh . t)
+							     (shell . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
