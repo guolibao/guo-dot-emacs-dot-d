@@ -413,13 +413,13 @@ of the word, lets make a quick fix and bind it properly
           '(("ja" . "en") ("en" . "de") ("de" . "fr") ("fr" . "de"))))
 #+END_SRC
 
-# ** #If 0 ... #endif Color Dim
-# #+BEGIN_SRC emacs-lisp
-# ;; #if 0 ... #endif to change the code color as comment color
-# (add-to-list 'load-path' "~/.emacs.d/MyLisp/")
-# (require 'never-comment)
-# (never-comment-init)
-# #+END_SRC
+** #If 0 ... #endif Color Dim
+#+BEGIN_SRC emacs-lisp
+;; #if 0 ... #endif to change the code color as comment color
+(add-to-list 'load-path' "~/.emacs.d/MyLisp/")
+(require 'never-comment)
+(never-comment-init)
+#+END_SRC
 
 
 # ** Auto Complete
