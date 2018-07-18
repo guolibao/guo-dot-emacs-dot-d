@@ -33,7 +33,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (htmlize rainbow-mode smex ido-vertical-mode ace-window use-package))))
+    (rainbow-delimiters hungry-delete htmlize rainbow-mode smex ido-vertical-mode ace-window use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
