@@ -572,3 +572,48 @@ Systax highlighting for documents exported to HTML
     :bind
     ("M-g" . magit-status))
 #+END_SRC
+* set LD_LIBRARY_PATH
+** function for set LD_LIBRARY_PATH
+#+BEGIN_SRC emacs-lisp
+  (defun guo/set-ld-library-Path (path)
+    (interactive)
+    (setenv "LD_LIBRARY_PATH"
+            (let((current (getenv "LD_LIBRARY_PATH"))
+                 (new path))
+              (if current
+                  (concat new ":" current)
+                new))))
+#+END_SRC
+
+** set LD_LIBRARY_PATH
+use =gcc -xc++ -E -v= to search for the gcc search path,
+used for irony-mode for searching library or path.
+#+BEGIN_SRC shell
+/usr/include/c++/4.8
+/usr/include/x86_64-linux-gnu/c++/4.8
+/usr/include/c++/4.8/backward
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include
+/usr/local/include
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed
+/usr/include/x86_64-linux-gnu
+/usr/include
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (guo/set-ld-library-Path "/usr/lib/llvm-3.4/lib/")
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (getenv "LD_LIBRARY_PATH")
+#+END_SRC
+
+* set LIBCLANG_LIBRARY
+#+BEGIN_SRC emacs-lisp
+  (setenv "LIBCLANG_LIBRARY" "/usr/lib/llvm-3.4/lib/libclang.so.1")
+  (getenv "LIBCLANG_LIBRARY")
+#+END_SRC
+
+* set LIBCLANG_INCLUDE_DIR
+#+BEGIN_SRC emacs-lisp
+  (setenv "LIBCLANG_INCLUDE_DIR" "/usr/lib/llvm-3.4/include")
+  (getenv "LIBCLANG_INCLUDE_DIR")
+#+END_SRC
