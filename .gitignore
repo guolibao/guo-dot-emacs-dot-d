@@ -1,6 +1,7 @@
 config.el
 ido.last
 network-security.data
+tramp
 
 elpa
 auto-save-list

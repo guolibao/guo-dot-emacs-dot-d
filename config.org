@@ -260,8 +260,6 @@ An now to enable it
 #+BEGIN_SRC emacs-lisp
   (electric-pair-mode t)
 #+END_SRC
-
-
 ** Rainbow
 When ever enable a color code, will colorize the background to that color, for example #00FF00
 #+BEGIN_SRC emacs-lisp
@@ -269,8 +267,6 @@ When ever enable a color code, will colorize the background to that color, for e
     :ensure t
     :init (rainbow-mode 1))
 #+END_SRC
-
-
 ** Hungry deletion
 On the list of things I like doing, deleting big whitespaces is pretty close to the bottom.
 Backspace or Delete will get rid of all whitespace until the next non-whitespace
@@ -284,8 +280,6 @@ thus disable it if you must, but it's pretty decent.
     :config
     (global-hungry-delete-mode))
 #+END_SRC
-
-
 ** Rainbow delimiters
 Colors parentheses and other delimiters depending on their depth, useful
 for any language using them, especially lisp
@@ -296,6 +290,14 @@ for any language using them, especially lisp
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 
+** sudo edit
+#+BEGIN_SRC emacs-lisp
+  (use-package sudo-edit
+    :ensure t
+    :bind
+    ("s-e" . sudo-edit))
+
+#+END_SRC
 * Moving around Emacs
 ** IDO
 # *** enable ido mode
