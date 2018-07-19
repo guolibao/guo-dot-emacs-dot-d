@@ -34,7 +34,7 @@
  '(org-agenda-files (quote ("~/.emacs.d/config.org")))
  '(package-selected-packages
    (quote
-    (rainbow-delimiters hungry-delete htmlize rainbow-mode smex ido-vertical-mode ace-window use-package))))
+    (helm rainbow-delimiters hungry-delete htmlize rainbow-mode smex ido-vertical-mode ace-window use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
