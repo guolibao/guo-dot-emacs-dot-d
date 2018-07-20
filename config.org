@@ -298,6 +298,10 @@ for any language using them, especially lisp
     ("s-e" . sudo-edit))
 
 #+END_SRC
+** shwo parenthesis mode
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode 1)
+#+END_SRC
 * Moving around Emacs
 ** IDO
 *** enable ido mode
@@ -424,9 +428,26 @@ This annoyed me so much, I wrote these two, they take care of it
     (other-window 1))
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
+
+** Swiper 
+swiper is a better search for default search
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :ensure t
+    :bind("C-s" . 'swiper))
+#+END_SRC
+
+** which-key
+To tell you the keyboard binding when pressing =C-c= =C-x= =...=
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+#+END_SRC
+
 * Text manipulation
 Here I shall collect self-made functions that make editing text easier.
-
 ** Improved kill-word
 Why on earth does a function called kill-word not .. kill a word. It 
 instead deletes characters from your cursors position to the end
@@ -439,6 +460,35 @@ of the word, lets make a quick fix and bind it properly
     (backward-word)
     (kill-word 1))
   (global-set-key (kbd "C-c w k") 'guo/kill-inner-word)
+#+END_SRC
+
+** copy a word
+#+BEGIN_SRC emacs-lisp
+  (defun guo/copy-whole-word ()
+    (interactive)
+    (save-excursion
+      (forward-char 1)
+      (backward-word)
+      (kill-word 1)
+      (yank)))
+  (global-set-key (kbd "C-c w c") 'guo/copy-whole-word)
+#+END_SRC
+
+** copy a line 
+#+BEGIN_SRC emacs-lisp
+  (defun guo/copy-whole-line ()
+    "Copies a line without regard for cursor position."
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring
+	(point-at-bol)
+	(point-at-eol)))))
+  (global-set-key (kbd "C-c l c") 'guo/copy-whole-line)
+#+END_SRC
+** kill a line
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c l k") 'kill-whole-line)
 #+END_SRC
 
 * My Own Setting Section
