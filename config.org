@@ -676,3 +676,8 @@ used for irony-mode for searching library or path.
 	  (call-interactively 'shell)))
     )
 #+END_SRC
+* project find file
+#+BEGIN_SRC emacs-lisp
+;; Find file in project
+(global-set-key (kbd "C-x M-f") 'project-find-file)
+#+END_SRC
