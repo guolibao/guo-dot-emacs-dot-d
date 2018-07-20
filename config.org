@@ -535,7 +535,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (sh . t)
+							     (shell . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
@@ -657,4 +657,17 @@ used for irony-mode for searching library or path.
 #+BEGIN_SRC emacs-lisp
   (setenv "LIBCLANG_INCLUDE_DIR" "/usr/lib/llvm-3.4/include")
   (getenv "LIBCLANG_INCLUDE_DIR")
+#+END_SRC
+
+* cygwin-shell
+#+BEGIN_SRC emacs-lisp
+  ;; for windows 'windows-nt' for Mac OS 'darwin'
+  (if (eq system-type 'windows-nt)
+      (defun cygwin-shell ()
+	"Run cygwin bash in shell mode."
+	(interactive)
+	(let ((explicit-shell-file-name "C:/cygwin64/bin/bash")
+	      ;; (explicit-shell-file-name "C:/cygwin64/bin/bash")
+	      )
+	  (call-interactively 'shell))))
 #+END_SRC
