@@ -659,15 +659,20 @@ used for irony-mode for searching library or path.
   (getenv "LIBCLANG_INCLUDE_DIR")
 #+END_SRC
 
-* cygwin-shell
+* cygwin-shell function and enable if if it is windows
 #+BEGIN_SRC emacs-lisp
   ;; for windows 'windows-nt' for Mac OS 'darwin'
+  ;; shell-file-name is thevariable that controls wich shell Emacs uses
+  ;; when it wants to runa shell command.
+
+  ;; explicit-shell-file-name is thevariable that controls wich shell =M-x shell=
+  ;; starts up.
   (if (eq system-type 'windows-nt)
-      (defun cygwin-shell ()
+      (defun guo/cygwin-shell ()
 	"Run cygwin bash in shell mode."
 	(interactive)
 	(let ((explicit-shell-file-name "C:/cygwin64/bin/bash")
-	      ;; (explicit-shell-file-name "C:/cygwin64/bin/bash")
 	      )
-	  (call-interactively 'shell))))
+	  (call-interactively 'shell)))
+    )
 #+END_SRC
