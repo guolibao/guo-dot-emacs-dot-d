@@ -432,9 +432,9 @@ This annoyed me so much, I wrote these two, they take care of it
 ** Swiper 
 swiper is a better search for default search
 #+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :ensure t
-    :bind("C-s" . 'swiper))
+  ;; (use-package swiper
+  ;;   :ensure t
+  ;;   :bind("C-s" . 'swiper))
 #+END_SRC
 
 ** which-key
