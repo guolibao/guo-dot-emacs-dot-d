@@ -236,7 +236,7 @@ You can also manually invoke =M-x config-reload=
 Emacs treats camelCase Strings as a single word by default, this changes said
 behavior
 #+BEGIN_SRC emacs-lisp
-  (global-subword-mode 1)
+  ;; (global-subword-mode 1)
 #+END_SRC
 
 ** Electric
@@ -588,7 +588,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (shell . t)
+							     (sh . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
