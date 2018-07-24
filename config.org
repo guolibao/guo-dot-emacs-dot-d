@@ -734,3 +734,17 @@ used for irony-mode for searching library or path.
 ;; Find file in project
 (global-set-key (kbd "C-x M-f") 'project-find-file)
 #+END_SRC
+* Auctex
+#+BEGIN_SRC emacs-lisp
+  (use-package auctex
+    :defer t
+    :ensure t
+    :config
+    (setq TeX-auto-save t))
+  ;; alternative or better configuration
+  ;; (use-package tex
+  ;;   :defer t
+  ;;   :ensure auctex
+  ;;   :config
+  ;;   (setq TeX-auto-save t))
+#+END_SRC
