@@ -22,6 +22,7 @@
 #+END_SRC
 
 ** company mode
+*** company mode normal install and setting
 I setthe delay for company modeto kick in to half a second, I also make sure that
 it starts doing its magic after typing in only 2 characters
 
@@ -40,6 +41,34 @@ I prefer =C-n= and =C-p= to move around the items, so I remap those accordingly.
                           (define-key company-active-map (kbd "C-n") #'company-select-next)
                           (define-key company-active-map (kbd "C-p") #'company-select-previous)
                           (define-key company-active-map (kbd "SPC") #'company-abort))
+#+END_SRC
+
+*** company-mode debug for company-gtags not working
+#+BEGIN_SRC emacs-lisp
+  (defun company-diag ()
+    (interactive)
+    (let* ((bb company-backends)
+           backend
+           (prefix (cl-loop for b in bb
+                       thereis (let ((company-backend b))
+                                 (setq backend b)
+                                 (company-call-backend 'prefix))))
+           cc)
+      (when (stringp prefix)
+        (setq cc (let ((company-backend backend))
+                   (company-call-backend 'candidates prefix))))
+      (pop-to-buffer (get-buffer-create "*company-diag*"))
+      (setq buffer-read-only nil)
+      (erase-buffer)
+      (insert "company-backends: " (pp-to-string bb))
+      (insert "\n")
+      (insert "Used backend: " (pp-to-string backend))
+      (insert "\n")
+      (insert "Prefix: " (pp-to-string prefix))
+      (insert "\n")
+      (insert (message  "Candidates number: %i" (length cc)))
+      (special-mode)))
+
 #+END_SRC
 
 ** ggtags
@@ -95,8 +124,10 @@ and then =M-x irony-install-server= in emacs
 
   (defun c-mode-company-init ()
     (setq company-backends '((company-c-headers
-			      company-dabbrev-code
-			      company-irony))))
+                              company-dabbrev-code
+                              company-gtags
+                              company-irony
+                              ))))
 
   (use-package company-irony
     :ensure t)
@@ -108,11 +139,11 @@ and then =M-x irony-install-server= in emacs
   ;; for windows 'windows-nt' for Mac OS 'darwin'
   (if (eq system-type 'gnu/linux)
       (use-package irony
-	:ensure t
-	:config
-	(add-hook 'c++-mode-hook 'irony-mode)
-	(add-hook 'c-mode-hook 'irony-mode)
-	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
+        :ensure t
+        :config
+        (add-hook 'c++-mode-hook 'irony-mode)
+        (add-hook 'c-mode-hook 'irony-mode)
+        (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
 #+END_SRC
 
