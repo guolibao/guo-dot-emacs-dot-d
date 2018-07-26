@@ -735,8 +735,10 @@ used for irony-mode for searching library or path.
 (global-set-key (kbd "C-x M-f") 'project-find-file)
 #+END_SRC
 * Auctex
+** 1) auctex install from package install, 
+try this first, if not working, need to install manually as below 2
 #+BEGIN_SRC emacs-lisp
-  (use-package auctex
+  (use-package auctex			;
     :defer t
     :ensure t
     :config
@@ -747,4 +749,19 @@ used for irony-mode for searching library or path.
   ;;   :ensure auctex
   ;;   :config
   ;;   (setq TeX-auto-save t))
+#+END_SRC
+
+** 2) manual install auctex
+auctex is not working solution for windows 7 in company
+auctex-12.1 installed from package-install is not working on windows 7 in company
+need to install auctex manually.
+
+If installed from package-install, delete the package from elpa directory,
+remove the auctex from init.el file from packaged-installed
+
+uncomment the code below
+#+BEGIN_SRC emacs-lisp
+  ;; (add-to-list 'load-path' "~/.emacs.d/site-lisp/auctex-11.89")
+  ;; (require 'tex-site)
+>>>>>>> 7a5df392ead164c817e6619be3e56b5cf01a1f90
 #+END_SRC
