@@ -794,5 +794,4 @@ uncomment the code below
 #+BEGIN_SRC emacs-lisp
   ;; (add-to-list 'load-path' "~/.emacs.d/site-lisp/auctex-11.89")
   ;; (require 'tex-site)
->>>>>>> 7a5df392ead164c817e6619be3e56b5cf01a1f90
 #+END_SRC
