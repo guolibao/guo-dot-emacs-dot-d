@@ -578,14 +578,14 @@ of the word, lets make a quick fix and bind it properly
 
 ** Auto Complete
 #+BEGIN_SRC emacs-lisp
-  (use-package auto-complete
-    :ensure t
-    :config
-    ;; start auto complete with emacs
-    (require 'auto-complete)
-    ;; do default config for auto-complete
-    (require 'auto-complete-config)
-    (ac-config-default))
+  ;; (use-package auto-complete
+  ;;   :ensure t
+  ;;   :config
+  ;;   ;; start auto complete with emacs
+  ;;   (require 'auto-complete)
+  ;;   ;; do default config for auto-complete
+  ;;   (require 'auto-complete-config)
+  ;;   (ac-config-default))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'ac-modes 'latex-mode)	;Make auto-complete aware of `latex-mode`
@@ -795,3 +795,4 @@ uncomment the code below
   ;; (add-to-list 'load-path' "~/.emacs.d/site-lisp/auctex-11.89")
   ;; (require 'tex-site)
 #+END_SRC
+
