@@ -588,7 +588,7 @@ of the word, lets make a quick fix and bind it properly
   ;;   (ac-config-default))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'ac-modes 'latex-mode)	;Make auto-complete aware of `latex-mode`
+  ;; (add-to-list 'ac-modes 'latex-mode)	;Make auto-complete aware of `latex-mode`
 #+END_SRC
 
 # ** Yasnippet
@@ -619,7 +619,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (sh . t)
+							     (shell . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
