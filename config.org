@@ -606,8 +606,10 @@ of the word, lets make a quick fix and bind it properly
 
 ** qml mode for QT qml file
 #+BEGIN_SRC emacs-lisp
-  (autoload 'qml-mode "qml-mode" "Editing Qt Declarative." t)
-  (add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
+  ;; (autoload 'qml-mode "qml-mode" "Editing Qt Declarative." t)
+  ;; (add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
+  (use-package qml-mode
+    :ensure t)
 #+END_SRC
 
 
@@ -620,7 +622,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (shell . t)
+							     (sh . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
