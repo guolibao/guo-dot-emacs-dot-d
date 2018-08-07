@@ -135,9 +135,12 @@ and then =M-x irony-install-server= in emacs
   ;;   (add-hook 'c-mode-hook 'c-mode-company-init))
   ;; ;; only install irony if it is linux system
   ;; ;; for windows 'windows-nt' for Mac OS 'darwin'
-  (if (eq system-type 'gnu/linux)
+
+  ;; (if (eq system-type 'gnu/linux)
       (use-package irony
-        :ensure t))
+	:ensure t)
+  ;; )
+
   ;;       :config
   ;;       (add-hook 'c++-mode-hook 'irony-mode)
   ;;       (add-hook 'c-mode-hook 'irony-mode)
@@ -197,23 +200,23 @@ and then =M-x irony-install-server= in emacs
   (defun irony--check-expansion ()
     (save-excursion
       (if (looking-at "\\_>") t (backward-char 1)
-          (if (looking-at "\\.") t (backward-char 1)
-              (if (looking-at "->") t nil)))))
+	  (if (looking-at "\\.") t (backward-char 1)
+	      (if (looking-at "->") t nil)))))
 
   (defun irony--indent-or-complete ()
     "Indent or Complete"
     (interactive)
     (cond ((and (not (use-region-p))
-                (irony--check-expansion))
-           (message "complete")
-           (company-complete-common))
-          (t (message "indent")
-             (call-interactively 'c-indent-line-or-region))))
+		(irony--check-expansion))
+	   (message "complete")
+	   (company-complete-common))
+	  (t (message "indent")
+	     (call-interactively 'c-indent-line-or-region))))
 
   (defun irony-mode-keys ()
     "Modify keymaps used by `irony-mode'."
     (local-set-key (kbd "TAB")
-                   'irony--indent-or-complete)
+		   'irony--indent-or-complete)
     (local-set-key [tab] 'irony--indent-or-complete))
 
   (add-hook 'c-mode-common-hook 'irony-mode-keys)
@@ -631,7 +634,7 @@ of the word, lets make a quick fix and bind it properly
     :ensure t
     :config
     (global-set-key [(shift f8)] 'highlight-symbol)
-    (global-set-key [f8] 'highlight-symbol-next)
+    (global-set-key [f8] 'highlight-symbol-next)
     (global-set-key [(control f8)] 'highlight-symbol-prev)
     (global-set-key [(meta f8)] 'highlight-symbol-query-replace))
 #+END_SRC
@@ -699,7 +702,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (sh . t)
+							     (shell . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
@@ -854,6 +857,7 @@ try this first, if not working, need to install manually as below 2
     :ensure t
     :config
     (setq TeX-auto-save t))
+
   ;; alternative or better configuration
   ;; (use-package tex
   ;;   :defer t
@@ -875,4 +879,19 @@ uncomment the code below
   ;; (add-to-list 'load-path' "~/.emacs.d/site-lisp/auctex-11.89")
   ;; (require 'tex-site)
 #+END_SRC
+* Set PATH and exec-path
+#+BEGIN_SRC emacs-lisp
+  (if (eq system-type 'windows-nt)
+      (setenv "PATH"
+	      (concat
+	       "C:\\msys64\\usr\\bin" ";"
+	       "C:\\msys64\\mingw64\\bin" ";"
+	       (getenv "PATH")
+	       )
+	      )
 
+    (setq exec-path (append '("C:/msys64/usr/bin" "C:/msys64/mingw64/bin")
+			    exec-path)))
+
+
+#+END_SRC
