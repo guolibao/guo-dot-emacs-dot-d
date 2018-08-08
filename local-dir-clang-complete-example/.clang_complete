@@ -1390,7 +1390,7 @@
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/SdSlot/private
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/SXM
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/Tethering
- -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/VbusControl
+-I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/VbusControl
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/VbusControl/private
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/VideoCapture
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/JKSDK/IPF/src/HAL/VideoCapture/private
