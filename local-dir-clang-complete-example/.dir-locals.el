@@ -6,4 +6,4 @@
 	(setq company-c-headers-path-user
 	      (delete-dups
 	       (append company-c-headers-path-user
-		       (list "aa" "bb" "cc")))))))
+		       (list "aa" "bb" "F:/Qt/Qt5.8.0/5.8/mingw53_32/include")))))))

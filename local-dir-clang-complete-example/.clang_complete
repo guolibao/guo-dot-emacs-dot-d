@@ -1,3 +1,5 @@
+-IF:/Qt/Qt5.8.0/5.8/mingw53_32/include
+
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/Gui/IPF/GUIApp/doc/doxygen
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/Gui/IPF/GUIApp/src/AppMain
 -I/home/guo/works/Y19DDX_APP03/trunk/Solutions/Gui/IPF/GUIApp/src/Function/Navigation/Utility/src/Base
