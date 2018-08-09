@@ -179,7 +179,7 @@ and then =M-x irony-install-server= in emacs
     (define-key irony-mode-map [remap complete-symbol] 'irony-completion-at-point-async))
   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
+  (eval-after-load 'company '(add-to-list 'company-backends '(company-irony company-c-headers)))
   ;; (optional) adds CC special commands to `company-begin-commands' in order to
   ;; trigger completion at interesting places, such as after scope operator
   ;; std::|
@@ -531,7 +531,7 @@ This annoyed me so much, I wrote these two, they take care of it
     (split-window-below)
     (balance-windows)
     (other-window 1))
-  (global-set-key (kbd "C-x 2") 'split-and-follow-hoizontally)
+  (global-set-key (kbd "C-x 2") 'split-and-follow-hoizontally)
 
   (defun split-and-follow-vertically ()
     (interactive)
