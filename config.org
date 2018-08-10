@@ -895,3 +895,18 @@ uncomment the code below
 
 
 #+END_SRC
+
+* Show current file's full path
+#+BEGIN_SRC emacs-lisp
+  ;; (setq frame-title-format
+  ;;       (list (format "%s %%S: %%j " (system-name))
+  ;;             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
+  (defun show-file-name ()
+    "Showing thefull pathfile name in the ninibuffer."
+    (interactive)
+    (message (buffer-file-name)))
+
+  (global-set-key [C-f1] 'show-file-name)
+#+END_SRC
+
