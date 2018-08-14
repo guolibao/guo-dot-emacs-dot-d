@@ -913,7 +913,7 @@ uncomment the code below
 * qt-pro-mode
 GNU Emacs major-mode for Qt build-system files
 #+BEGIN_SRC emacs-lisp
-  (use-package
+  (use-package qt-pro-mode
     :ensure t
     :mode ("\\.pro\\'" "\\.pri\\'"))
 #+END_SRC
