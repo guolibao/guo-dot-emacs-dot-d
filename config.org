@@ -910,3 +910,10 @@ uncomment the code below
   (global-set-key [C-f1] 'show-file-name)
 #+END_SRC
 
+* qt-pro-mode
+GNU Emacs major-mode for Qt build-system files
+#+BEGIN_SRC emacs-lisp
+  (use-package
+    :ensure t
+    :mode ("\\.pro\\'" "\\.pri\\'"))
+#+END_SRC
