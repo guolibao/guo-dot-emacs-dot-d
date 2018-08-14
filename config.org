@@ -332,6 +332,14 @@ Quickly edit =~/.emacs.d/config.org=
   (global-set-key (kbd "C-c e") 'config-visit)
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+  (defun config-init ()
+    "Visitthe init.el file"
+    (interactive)
+    (find-file "~/.emacs.d/init.el"))
+  (global-set-key (kbd "C-c i") 'config-init)
+#+END_SRC
+
 ** Reloading the configuration
 Simply pressing =C-c r= will reload the file, very handy.
 You can also manually invoke =M-x config-reload=
