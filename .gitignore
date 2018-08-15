@@ -3,6 +3,7 @@ ido.last
 network-security.data
 tramp
 ac-comphist.dat
+ede-projects.el
 
 elpa
 auto-save-list
