@@ -925,9 +925,3 @@ GNU Emacs major-mode for Qt build-system files
     :ensure t
     :mode ("\\.pro\\'" "\\.pri\\'"))
 #+END_SRC
-* Default browser
-I use qutebrowser, so that's what I'll set up.
-#+BEGIN_SRC emacs-lisp
-  (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "qutebrowser")
-#+END_SRC
