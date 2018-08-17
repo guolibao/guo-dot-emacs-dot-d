@@ -710,7 +710,7 @@ of the word, lets make a quick fix and bind it properly
 							     (C . t)
 							     (gnuplot . t)
 							     (R . t)
-							     (shell . t)
+							     (sh . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
@@ -932,9 +932,27 @@ For editing device trees .dts and dti files for linux kernel
     :ensure t)
 #+END_SRC
 * macro
-this is macro is to change user header file "header" in c or c++ to system header file <header>
+** elmacro
+Shows Keyboard macros or latest interactive commands as emacs lisp
 #+BEGIN_SRC emacs-lisp
-  (fset 'user-to-sys-c-header-macro
-     [?\C-a ?\C-  ?\C-e ?\M-x ?r return ?\" ?\\ ?\( ?. ?+ ?\\ ?\) ?\C-e return ?< ?\\ ?1 return])
-  (global-set-key (kbd "\C-x\C-kT") 'user-to-sys-c-header-macro)
+  (use-package elmacro
+    :ensure t
+    :init (elmacro-mode))
+#+END_SRC
+*** generated emacs lisp from keyboard macro with elmacro
+#+BEGIN_SRC emacs-lisp
+    (defun guo/replace-double-quotes-with-angle-brackets ()
+      (interactive)
+      (move-beginning-of-line 1)
+      (set-mark-command nil)
+      (move-end-of-line 1)
+      (replace-regexp "\"\\(.+\\)\"" "<\\1>" nil
+                      (if
+                          (use-region-p)
+                          (region-beginning))
+                      (if
+                          (use-region-p)
+                          (region-end))
+                      nil))
+  (global-set-key (kbd "\C-x\C-kA") 'guo/replace-double-quotes-with-angle-brackets)
 #+END_SRC
