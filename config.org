@@ -940,6 +940,8 @@ Shows Keyboard macros or latest interactive commands as emacs lisp
     :init (elmacro-mode))
 #+END_SRC
 *** generated emacs lisp from keyboard macro with elmacro
+**** replace "" to <>
+For example to replace user c header to system c header include, =#include "header"= to =#include <header>=
 #+BEGIN_SRC emacs-lisp
     (defun guo/replace-double-quotes-with-angle-brackets ()
       (interactive)
