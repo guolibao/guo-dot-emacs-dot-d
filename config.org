@@ -931,3 +931,10 @@ For editing device trees .dts and dti files for linux kernel
   (use-package dts-mode
     :ensure t)
 #+END_SRC
+* macro
+this is macro is to change user header file "header" in c or c++ to system header file <header>
+#+BEGIN_SRC emacs-lisp
+  (fset 'user-to-sys-c-header-macro
+     [?\C-a ?\C-  ?\C-e ?\M-x ?r return ?\" ?\\ ?\( ?. ?+ ?\\ ?\) ?\C-e return ?< ?\\ ?1 return])
+  (global-set-key (kbd "\C-x\C-kT") 'user-to-sys-c-header-macro)
+#+END_SRC
