@@ -860,11 +860,11 @@ used for irony-mode for searching library or path.
 ** 1) auctex install from package install, 
 try this first, if not working, need to install manually as below 2
 #+BEGIN_SRC emacs-lisp
-  (use-package auctex			;
-    :defer t
-    :ensure t
-    :config
-    (setq TeX-auto-save t))
+  ;; (use-package auctex			;
+  ;;   :defer t
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq TeX-auto-save t))
 
   ;; alternative or better configuration
   ;; (use-package tex
