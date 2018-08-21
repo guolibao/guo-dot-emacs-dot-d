@@ -372,7 +372,6 @@ You can easily add and remove pairs yourself, have a look
 			     (?\( . ?\))
 			     (?\[ . ?\])
 			     (?\" . ?\")
-			     (?\< . ?\>)
 			     ))
 #+END_SRC
  
@@ -711,11 +710,56 @@ of the word, lets make a quick fix and bind it properly
 							     (gnuplot . t)
 							     (R . t)
 							     (sh . t)
+							     (ditaa . t)
 							     )))
   (setq org-plantuml-jar-path
 	(expand-file-name "~/plantuml.jar"))
 
 #+END_SRC
+
+**** ditaa.jar where should be place
+execute the below function, to find where should the ditaa.jar should be placed
+#+BEGIN_SRC emacs-lisp
+  (defun find-location-to-place-ditaa ()
+    "find the location where the ditaa.jar should be placed "
+    (interactive)
+    (message 
+     (expand-file-name
+      "ditaa.jar"
+      (file-name-as-directory
+       (expand-file-name
+	"scripts"
+	(file-name-as-directory
+	 (expand-file-name
+	  "../contrib"
+	  (file-name-directory (org-find-library-dir "org")))))))))
+
+#+END_SRC
+
+**** ditaa in orgmode example
+refer to http://ditaa.sourceforge.net/
+=-A, --no-antialias=
+=-d,--debug=
+=-E,--no-separation=
+=-e,--encoding=
+=-r,--round-corners=
+==--help==
+==-S,--no-shadows=
+press C-c C-c to execute the below ditaa
+#+BEGIN_SRC ditaa :file image/hello-world.png :cmdline -E
+
+       +-----------+
+       |cBLU       |
+       |           |
+       |           |
+       |      +----+
+       |      |cPNK|
+       |      |    |
+       +------+----+
+#+END_SRC
+
+#+RESULTS:
+[[file:image/hello-world.png]]
 
 ** Open the folder containing the current file by the default explorer of the OS
 Using -brwse-url-of-file should work when given a directory
