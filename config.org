@@ -733,6 +733,9 @@ install plantuml-mode
   Bob->Alice: Authentication Response
 #+END_SRC
 
+#+RESULTS:
+[[file:image/my-diagram.png]]
+
 **** ditaa.jar where should be place
 execute the below function, to find where should the ditaa.jar should be placed
 #+BEGIN_SRC emacs-lisp
