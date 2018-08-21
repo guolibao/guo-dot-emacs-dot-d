@@ -717,6 +717,22 @@ of the word, lets make a quick fix and bind it properly
 
 #+END_SRC
 
+**** plantuml-mode 
+install plantuml-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package plantuml-mode
+    :ensure t)
+#+END_SRC
+
+**** plantuml example in org mode
+#+BEGIN_SRC plantuml :file image/my-diagram.png
+  title Authentication Sequence
+
+  Alice->Bob: Authentication Request
+  note right of Bob: Bob thinks about it
+  Bob->Alice: Authentication Response
+#+END_SRC
+
 **** ditaa.jar where should be place
 execute the below function, to find where should the ditaa.jar should be placed
 #+BEGIN_SRC emacs-lisp
