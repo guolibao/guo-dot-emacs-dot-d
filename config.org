@@ -961,11 +961,14 @@ uncomment the code below
 	      (concat
 	       "C:\\msys64\\usr\\bin" ";"
 	       "C:\\msys64\\mingw64\\bin" ";"
+	       "C:\\Qt\\Qt5.8.0\\5.8\\mingw53_32\\bin" ";"
 	       (getenv "PATH")
 	       )
 	      )
 
-    (setq exec-path (append '("C:/msys64/usr/bin" "C:/msys64/mingw64/bin")
+    (setq exec-path (append '("C:/msys64/usr/bin"
+			      "C:/msys64/mingw64/bin"
+			      "C:/Qt/Qt5.8.0/5.8/mingw53_32/bin")
 			    exec-path)))
 
 
