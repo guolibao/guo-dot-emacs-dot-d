@@ -297,19 +297,23 @@ put it in =.dir-locals.el=
 #+END_SRC
 
 *** bash
+to determine the mode use:
+=M-: major-mode=
+for shell script, it is sh-mode
+for =M-x shell=, it is shell-mode
 **** yasnippet
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'shell-mode-hook 'yas-minor-mode)
+  (add-hook 'sh-mode-hook 'yas-minor-mode)
 #+END_SRC
 **** flycheck
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'shell-mode-hook 'flycheck-mode)
+  (add-hook 'sh-mode-hook 'flycheck-mode)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'shell-mode-hook 'company-mode)
+  (add-hook 'sh-mode-hook 'company-mode)
 
-  (defun shell-mode-company-init ()
+  (defun sh-mode-company-init ()
     (setq-local company-backends '((company-shell
                                     company-shell-env
                                     company-etags
@@ -319,7 +323,7 @@ put it in =.dir-locals.el=
     :ensure t
     :config
     (require 'company)
-    (add-hook 'shell-mode-hook 'shell-mode-company-init))
+    (add-hook 'sh-mode-hook 'sh-mode-company-init))
 #+END_SRC
 * Minor convenience
 ** Visiting the configuration
