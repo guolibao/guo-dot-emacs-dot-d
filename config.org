@@ -1028,3 +1028,11 @@ For example to replace user c header to system c header include, =#include "head
                       nil))
   (global-set-key (kbd "\C-x\C-kA") 'guo/replace-double-quotes-with-angle-brackets)
 #+END_SRC
+* showing line-number
+#+BEGIN_SRC emacs-lisp
+  ;; show the line number on the left
+  (global-linum-mode 1)
+  ;; show thecurrent line and column for your cursor
+  (setq line-number-mode t)
+  (setq column-number-mode t)
+#+END_SRC
