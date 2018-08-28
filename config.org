@@ -138,7 +138,10 @@ and then =M-x irony-install-server= in emacs
 
   ;; (if (eq system-type 'gnu/linux)
       (use-package irony
-	:ensure t)
+        :ensure t
+        :config
+        (if (eq system-type 'windows-nt)
+            (setq w32-pipe-read-delay 0)))
   ;; )
 
   ;;       :config
@@ -200,23 +203,23 @@ and then =M-x irony-install-server= in emacs
   (defun irony--check-expansion ()
     (save-excursion
       (if (looking-at "\\_>") t (backward-char 1)
-	  (if (looking-at "\\.") t (backward-char 1)
-	      (if (looking-at "->") t nil)))))
+          (if (looking-at "\\.") t (backward-char 1)
+              (if (looking-at "->") t nil)))))
 
   (defun irony--indent-or-complete ()
     "Indent or Complete"
     (interactive)
     (cond ((and (not (use-region-p))
-		(irony--check-expansion))
-	   (message "complete")
-	   (company-complete-common))
-	  (t (message "indent")
-	     (call-interactively 'c-indent-line-or-region))))
+                (irony--check-expansion))
+           (message "complete")
+           (company-complete-common))
+          (t (message "indent")
+             (call-interactively 'c-indent-line-or-region))))
 
   (defun irony-mode-keys ()
     "Modify keymaps used by `irony-mode'."
     (local-set-key (kbd "TAB")
-		   'irony--indent-or-complete)
+                   'irony--indent-or-complete)
     (local-set-key [tab] 'irony--indent-or-complete))
 
   (add-hook 'c-mode-common-hook 'irony-mode-keys)
