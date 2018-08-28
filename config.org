@@ -266,6 +266,16 @@ put it in =.dir-locals.el=
 #+END_SRC
 
 **** company
+for company-jedi, sometimes it fails to install server,
+may try to use the command from commmand line
+#+BEGIN_SRC shell
+~/.emacs.d/.python-environments/default/bin/pip install --upgrade ~/.emacs.d/elpa/jedi-core-20170121.610/
+#+END_SRC
+or using below, if above command fail, using =sudo=
+#+BEGIN_SRC shell
+sudo ~/.emacs.d/.python-environments/default/bin/pip install --upgrade ~/.emacs.d/elpa/jedi-core-20170121.610/
+#+END_SRC
+to install the server
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'company
     (add-hook 'python-mode-hook 'company-mode))
