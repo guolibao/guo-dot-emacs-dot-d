@@ -266,6 +266,9 @@ put it in =.dir-locals.el=
 #+END_SRC
 
 **** company
+=pip install sexpdata=
+=pip install epc=
+=pip install virtualenv=
 for company-jedi, sometimes it fails to install server,
 may try to use the command from commmand line
 #+BEGIN_SRC shell
@@ -284,6 +287,10 @@ to install the server
     :ensure t
     :config
     (require 'company)
+    ;; (setq jedi:environment-virtualenv (list (expand-file-name "~/.emacs.d/.python-environments/")))
+    ;; (add-hook 'python-mode-hook 'jedi:setup)
+    ;; (setq jedi:complete-on-dot t)
+    ;; (setq jedi:use-shortcuts t)
     (add-to-list 'company-backends 'company-jedi))
 
   (defun python-mode-company-init ()
