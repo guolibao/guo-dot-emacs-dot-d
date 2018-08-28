@@ -274,7 +274,15 @@ put it in =.dir-locals.el=
     :ensure t
     :config
     (require 'company)
-    (add-hook 'python-mode-hook 'python-mode-company-init))
+    (add-to-list 'company-backends 'company-jedi))
+
+  (defun python-mode-company-init ()
+    (setq-local company-backends '((company-jedi
+                                    company-etags
+                                    company-dabbrev-code
+                                    ))))
+
+  (add-hook 'python-mode-hook 'python-mode-company-init)
 #+END_SRC
 
 *** emacs-lisp
