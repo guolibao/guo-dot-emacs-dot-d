@@ -1064,3 +1064,7 @@ For example to replace user c header to system c header include, =#include "head
   (setq line-number-mode t)
   (setq column-number-mode t)
 #+END_SRC
+* set custom theme
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'misterioso)
+#+END_SRC
