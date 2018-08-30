@@ -1068,3 +1068,9 @@ For example to replace user c header to system c header include, =#include "head
 #+BEGIN_SRC emacs-lisp
   (load-theme 'misterioso)
 #+END_SRC
+* set truncate line to true
+set the truncate line to true so that a long line will not wrap around
+use =M-x toggle-truncate-line= to wrap line or disable 
+#+BEGIN_SRC emacs-lisp
+  (setq-default truncate-lines t)
+#+END_SRC
