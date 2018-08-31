@@ -34,7 +34,14 @@
  '(org-agenda-files (quote ("~/.emacs.d/config.org")))
  '(package-selected-packages
    (quote
-    (flycheck-irony irony-eldoc qml-mode auctex which-key swiper auto-complete sudo-edit helm rainbow-delimiters hungry-delete htmlize rainbow-mode smex ido-vertical-mode ace-window use-package))))
+    (flycheck-irony irony-eldoc qml-mode auctex which-key swiper auto-complete sudo-edit helm rainbow-delimiters hungry-delete htmlize rainbow-mode smex ido-vertical-mode ace-window use-package)))
+ '(safe-local-variable-values
+   (quote
+    ((eval progn
+	   (setq company-c-headers-path-user
+		 (delete-dups
+		  (append company-c-headers-path-user
+			  (list "aa" "bb")))))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
