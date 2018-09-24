@@ -1074,3 +1074,12 @@ use =M-x toggle-truncate-line= to wrap line or disable
 #+BEGIN_SRC emacs-lisp
   (setq-default truncate-lines t)
 #+END_SRC
+* CEDET and EDE
+** ECB emacs code brouwser
+#+BEGIN_SRC emacs-lisp
+  ;; (global-ede-mode 1)
+  ;; (require 'semantic/sb)
+  ;; (semantic-mode 1)
+  (use-package ecb
+    :ensure t)
+#+END_SRC
