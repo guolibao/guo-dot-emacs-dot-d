@@ -75,6 +75,9 @@ I prefer =C-n= and =C-p= to move around the items, so I remap those accordingly.
 #+BEGIN_SRC emacs-lisp
   (use-package ggtags
     :ensure t)
+  ;; get rid of M-ss keymap for ggtags-navigation-isearch-forward,
+  ;; because it is conflict with M-s for avy-find-char
+  (define-key ggtags-navigation-map (kbd "\M-ss") nil)
 #+END_SRC
 ** specific languages
 Be it for code or prose, completion is a must.
@@ -874,14 +877,24 @@ Systax highlighting for documents exported to HTML
 #+END_SRC
 * git integration
 ** magit
+magit-file-mode-map define some short-cut key for magit as follows:
+| Short-Cut key      | magit command        |
+|--------------------+----------------------|
+| =C-xg=             | magit-status         |
+| =C-x\M-g=          | magit-dispatch-popup |
+| =C-c\M-g(removed)= | magit-file-popup     |
+| =C-x\C-g(added)=   | magit-file-popup     |
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
     :config
     (setq magit-push-always-verify nil)
-    (setq magit-commit-summary-max-length 50)
-    :bind
-    ("M-g" . magit-status))
+    (setq magit-commit-summary-max-length 50))
+
+  ;; remove \C-c\M-g from magit, because it is conflict with ggtags-grep
+  (define-key magit-file-mode-map (kbd "\C-c\M-g") nil)
+  (define-key magit-file-mode-map (kbd "\C-x\C-g") 'magit-file-popup)
+
 #+END_SRC
 * set LD_LIBRARY_PATH
 ** function for set LD_LIBRARY_PATH
