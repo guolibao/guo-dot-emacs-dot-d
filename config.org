@@ -85,8 +85,9 @@ I prefer =C-n= and =C-p= to move around the items, so I remap those accordingly.
 
   ;; remove the key to firt-error, because it conflicts with goto the end of the page
   ;; (define-key ggtags-navigation-map (kbd "\M-<") nil)
-
+  (define-key ggtags-mode-prefix-map "\M-g" nil) ;remove ggtags-grep default binding, for conflicts with magit
   (define-key ggtags-mode-prefix-map "\M-r" 'ggtags-grep)
+
 #+END_SRC
 ** specific languages
 Be it for code or prose, completion is a must.
@@ -899,8 +900,6 @@ magit-file-mode-map define some short-cut key for magit as follows:
     (setq magit-push-always-verify nil)
     (setq magit-commit-summary-max-length 50))
 
-  ;; remove \C-c\M-g from magit, because it is conflict with ggtags-grep
-  ;; (define-key magit-file-mode-map (kbd "\C-c\M-g") nil)
   ;; (define-key magit-file-mode-map (kbd "\C-x\C-g") 'magit-file-popup)
 #+END_SRC
 * set LD_LIBRARY_PATH
