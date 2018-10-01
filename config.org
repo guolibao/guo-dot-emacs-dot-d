@@ -85,6 +85,8 @@ I prefer =C-n= and =C-p= to move around the items, so I remap those accordingly.
 
   ;; remove the key to firt-error, because it conflicts with goto the end of the page
   ;; (define-key ggtags-navigation-map (kbd "\M-<") nil)
+
+  (define-key ggtags-mode-prefix-map "\M-r" 'ggtags-grep)
 #+END_SRC
 ** specific languages
 Be it for code or prose, completion is a must.
