@@ -558,7 +558,8 @@ for quick go to a place by searching a character and selet the overlay letters
   (use-package avy
     :ensure t
     :bind
-    ("M-s" . avy-goto-char))
+    ("M-s" . avy-goto-char)
+    ("\C-c a" . avy-goto-char))
 #+END_SRC
 
 ** ace-window
