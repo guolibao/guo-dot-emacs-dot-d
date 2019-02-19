@@ -751,15 +751,16 @@ of the word, lets make a quick fix and bind it properly
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'org
     (org-babel-do-load-languages 'org-babel-load-languages '((ruby . t)
-							     (plantuml . t)
-							     (C . t)
-							     (gnuplot . t)
-							     (R . t)
-							     (sh . t)
-							     (ditaa . t)
-							     )))
+                                                             (plantuml . t)
+                                                             (C . t)
+                                                             (gnuplot . t)
+                                                             (R . t)
+                                                             (sh . t)
+                                                             (ditaa . t)
+                                                             (calc . t)
+                                                             )))
   (setq org-plantuml-jar-path
-	(expand-file-name "~/plantuml.jar"))
+        (expand-file-name "~/plantuml.jar"))
 
 #+END_SRC
 
