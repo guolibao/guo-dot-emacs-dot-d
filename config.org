@@ -1115,6 +1115,8 @@ use =M-x toggle-truncate-line= to wrap line or disable
 #+END_SRC
 * beamer for latex
 
+Need to org-beamer-mode
+
   #+BEGIN_SRC emacs-lisp
   ;; allow for export=>beamer by placing
 
