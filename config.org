@@ -758,6 +758,7 @@ of the word, lets make a quick fix and bind it properly
                                                              (sh . t)
                                                              (ditaa . t)
                                                              (calc . t)
+                                                             (latex . t)
                                                              )))
   (setq org-plantuml-jar-path
         (expand-file-name "~/plantuml.jar"))
