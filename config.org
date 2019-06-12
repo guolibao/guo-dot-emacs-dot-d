@@ -1206,3 +1206,7 @@ Need to org-beamer-mode
 
 #+CAPTION: tikz caption
 #+LABEL: fig:tik
+* Change yes-or-no-p into y-or-n questions
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
