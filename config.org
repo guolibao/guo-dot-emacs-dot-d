@@ -1207,6 +1207,20 @@ Need to org-beamer-mode
 ** draw a git history node graph
 #+begin_src latex :file fsa.pdf :packages '(("" "tikz")) :border 1em :results raw
   % Define block styles
+
+  % \usepackage{filecontents}
+  % % gitgraph.txt contains raw output of: $ git log --graph --oneline
+  % \begin{filecontents}{gitgraph.txt}
+  % * d764b48 added plaintext version in markdown
+  % * 54ba4b2 release 2014-01-25
+  % *   c589395 Merge branch 'master'
+  % |\
+  % | * 9f9c652 Remove holdover from kjh gh-pages branch
+  % * | b3bd158 exclude font files
+  % |/
+  % * 63268c1 micro-typography
+  % \end{filecontents}
+
   \usetikzlibrary{shapes,arrows}
   \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
   \usetikzlibrary{calc,intersections,through,backgrounds}
@@ -1243,8 +1257,9 @@ Need to org-beamer-mode
 
 #+end_src
 
-#+CAPTION: tikz caption
-#+LABEL: fig:tik
+#+RESULTS:
+[[file:fsa.pdf]]
+
 * Change yes-or-no-p into y-or-n questions
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
