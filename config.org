@@ -866,6 +866,20 @@ press C-c C-c to execute the below ditaa
 #+RESULTS:
 [[file:image/hello-world.png]]
 
+*** orgmode src example quote verse center, etc,block
+s    #+begin_src ... #+end_src 
+e    #+begin_example ... #+end_example
+q    #+begin_quote ... #+end_quote 
+v    #+begin_verse ... #+end_verse 
+c    #+begin_center ... #+end_center 
+l    #+begin_latex ... #+end_latex 
+L    #+latex: 
+h    #+begin_html ... #+end_html 
+H    #+html: 
+a    #+begin_ascii ... #+end_ascii 
+A    #+ascii: 
+i    #+index: line 
+I    #+include: line 
 ** Open the folder containing the current file by the default explorer of the OS
 Using -brwse-url-of-file should work when given a directory
 #+BEGIN_SRC emacs-lisp
